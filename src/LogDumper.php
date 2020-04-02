@@ -31,17 +31,8 @@ class LogDumper
 
     protected function convertToString($argument): string
     {
-        if ($argument instanceof Model) {
-            $argument = $argument->toArray();
-            VarDumper::dump($argument);
-        }
-
         $clonedArgument = $this->cloner->cloneVar($argument);
 
-        ob_start();
-        $output = $this->dumper->dump($clonedArgument, true);
-        ob_get_clean();
-
-        return $output;
+        return $this->dumper->dump($clonedArgument, true);
     }
 }

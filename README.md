@@ -1,11 +1,12 @@
-# Very short description of the package
+# A function to dump to the log
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-log-dump.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-log-dump/run-tests?label=tests)](https://github.com/spatie/:package_name/actions?query=workflow%3Arun-tests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-log-dump.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
 
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+This package contains a function `ld`. Any argument you pass to it will be dumped to the log.
+
 
 ## Support us
 
