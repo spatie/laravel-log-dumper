@@ -1,11 +1,11 @@
 {
-    "name": "spatie/laravel-log-dump",
+    "name": "spatie/laravel-log-dumper",
     "description": "Dump to the log",
     "keywords": [
         "spatie",
         "laravel-log-dumper"
     ],
-    "homepage": "https://github.com/spatie/laravel-log-dump",
+    "homepage": "https://github.com/spatie/laravel-log-dumper",
     "license": "MIT",
     "authors": [
         {
