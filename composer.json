@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.4",
-        "illuminate/support": "^7.4",
+        "illuminate/support": "^7.0",
         "spatie/phpunit-snapshot-assertions": "^4.0"
     },
     "require-dev": {
