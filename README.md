@@ -24,7 +24,7 @@ composer require spatie/laravel-log-dump
 ## Usage
 
 ``` php
-$skeleton = new Spatie\Skeleton();
+$skeleton = new Spatie\LogDumper();
 echo $skeleton->echoPhrase('Hello, Spatie!');
 ```
 
