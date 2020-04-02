@@ -1,4 +1,4 @@
-# A function to dump to the log
+# A function to dump anything to the log
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-log-dumper.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-log-dumper)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-log-dump/run-tests?label=tests)](https://github.com/spatie/laravel-log-dumper/actions?query=workflow%3Arun-tests+branch%3Amaster)
