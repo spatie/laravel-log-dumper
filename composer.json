@@ -1,6 +1,6 @@
 {
     "name": "spatie/laravel-log-dumper",
-    "description": "Dump to the log",
+    "description": "A function to dump anything to the log\n",
     "keywords": [
         "spatie",
         "laravel-log-dumper"
