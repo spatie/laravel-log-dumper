@@ -24,7 +24,7 @@ class LogDumper
     {
         foreach ($arguments as $argument) {
             $logOutput = $this->convertToString($argument);
-$logOutput = 'bla';
+
             app('log')->info($logOutput);
         }
     }
