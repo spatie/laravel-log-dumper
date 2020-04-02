@@ -3,7 +3,7 @@
     "description": "Dump to the log",
     "keywords": [
         "spatie",
-        "laravel-log-dump"
+        "laravel-log-dumper"
     ],
     "homepage": "https://github.com/spatie/laravel-log-dump",
     "license": "MIT",
