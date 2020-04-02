@@ -2,10 +2,8 @@
 
 namespace Spatie\LogDumper;
 
-use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;
-use Symfony\Component\VarDumper\VarDumper;
 
 class LogDumper
 {
