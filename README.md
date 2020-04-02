@@ -4,9 +4,13 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-log-dump/run-tests?label=tests)](https://github.com/spatie/:package_name/actions?query=workflow%3Arun-tests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-log-dump.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
 
+This package contains a function `ld`. Any argument you pass to it will be dumped to the log. You can pass any kind of variable to it.
 
-This package contains a function `ld`. Any argument you pass to it will be dumped to the log.
+```php
+ld('a string', ['an array'], new Class());
+```
 
+Under the hood, Symfony's `VarDumper` is used to create string representations.
 
 ## Support us
 
@@ -24,10 +28,13 @@ composer require spatie/laravel-log-dump
 
 ## Usage
 
-``` php
-$skeleton = new Spatie\LogDumper();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+You can pass any variable you want to `ld`. 
+
+```php
+ld('a string', ['an array'], new Class())
 ```
+
+All arguments will be converted to strings and will be written to the application log.
 
 ## Testing
 
