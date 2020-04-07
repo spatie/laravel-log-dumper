@@ -4,7 +4,7 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-log-dump/run-tests?label=tests)](https://github.com/spatie/laravel-log-dumper/actions?query=workflow%3Arun-tests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-log-dump.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-log-dumper)
 
-This package contains a function `ld`. Any argument you pass to it will be dumped to the log. You can pass any kind of variable to it.
+This package contains a function `ld`. Any argument you pass to it will be dumped to the log. You can pass any kind of value to it.
 
 ```php
 ld('a string', ['an array'], new Class());
