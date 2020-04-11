@@ -31,7 +31,7 @@ composer require spatie/laravel-log-dumper
 You can pass any variable you want to `ld`. 
 
 ```php
-ld('a string', ['an array'], new Class())
+ld('a string', ['an array'], new Class());
 ```
 
 All arguments will be converted to strings and will be written to the application log.
