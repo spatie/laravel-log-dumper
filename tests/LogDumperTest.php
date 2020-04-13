@@ -33,6 +33,13 @@ class LogDumperTest extends TestCase
 
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
+    /** @test */
+    public function it_can_chaine_multiple_logs()
+    {
+        ld('test', 'test2')->error('test3')->critical('test4');
+
+        $this->assertMatchesSnapshot(Log::getLinesAsString());
+    }
 
     /** @test */
     public function it_can_log_an_array()
