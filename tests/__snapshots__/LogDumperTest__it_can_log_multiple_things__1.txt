@@ -1,3 +1,11 @@
-"test"
+Array
+(
+    [info] => Array
+        (
+            [0] => "test"
 
-"test2"
+            [1] => "test2"
+
+        )
+
+)

@@ -18,13 +18,55 @@ class LogDumper
         $this->dumper = new CliDumper();
     }
 
-    public function log(...$arguments)
+    public function debug(...$arguments): self
+    {
+        return $this->log('debug', ...$arguments);
+    }
+
+    public function notice(...$arguments): self
+    {
+        return $this->log('notice', ...$arguments);
+    }
+
+    public function info(...$arguments): self
+    {
+        return $this->log('info', ...$arguments);
+    }
+
+    public function alert(...$arguments): self
+    {
+        return $this->log('alert', ...$arguments);
+    }
+
+    public function warning(...$arguments): self
+    {
+        return $this->log('warning', ...$arguments);
+    }
+
+    public function error(...$arguments): self
+    {
+        return $this->log('error', ...$arguments);
+    }
+
+    public function critical(...$arguments): self
+    {
+        return $this->log('critical', ...$arguments);
+    }
+
+    public function emergency(...$arguments): self
+    {
+        return $this->log('emergency', ...$arguments);
+    }
+
+    public function log(string $method, ...$arguments): self
     {
         foreach ($arguments as $argument) {
             $logOutput = $this->convertToString($argument);
 
-            app('log')->info($logOutput);
+            app('log')->$method($logOutput);
         }
+
+        return $this;
     }
 
     protected function convertToString($argument): string

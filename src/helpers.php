@@ -3,8 +3,8 @@
 use Spatie\LogDumper\LogDumper;
 
 if (! function_exists('ld')) {
-    function ld(...$arguments)
+    function ld(...$arguments): LogDumper
     {
-        (new LogDumper())->log(...$arguments);
+        return (new LogDumper())->info(...$arguments);
     }
 }

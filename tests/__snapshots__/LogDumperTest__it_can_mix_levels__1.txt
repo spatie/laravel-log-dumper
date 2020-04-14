@@ -1,0 +1,25 @@
+Array
+(
+    [emergency] => Array
+        (
+            [0] => "string"
+
+            [1] => array:1 [
+  "b" => 1
+]
+
+            [2] => "yet another string"
+
+        )
+
+    [error] => Array
+        (
+            [0] => array:1 [
+  "a" => 1
+]
+
+            [1] => "another string"
+
+        )
+
+)

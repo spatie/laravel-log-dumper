@@ -1,4 +1,12 @@
-array:2 [
+Array
+(
+    [info] => Array
+        (
+            [0] => array:2 [
   "a" => 1
   "b" => 2
 ]
+
+        )
+
+)

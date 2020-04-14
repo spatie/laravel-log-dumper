@@ -34,7 +34,24 @@ You can pass any variable you want to `ld`.
 ld('a string', ['an array'], new Class())
 ```
 
-All arguments will be converted to strings and will be written to the application log.
+All arguments will be converted to strings and will be written to the application log using the `info` level.
+
+## Using other log level
+
+If you want to use another info level, you can just called the method you want on `ld`. You can pass these methods any type and any number of arguments. They will all be logged.
+
+```php
+// logs using the `error` level
+ld()->error('a string', ['an array'], new Class())
+```
+
+Of course you can chain different levels.
+
+```php
+ld()
+   ->debug('Debug info', ['an array'])
+   ->error('Error info', new Class);
+```
 
 ## Testing
 

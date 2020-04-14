@@ -10,51 +10,51 @@ class LogFake implements LoggerInterface
 
     public function emergency($message, array $context = [])
     {
-        $this->lines[] = $message;
+        $this->lines['emergency'][] = $message;
     }
 
     public function alert($message, array $context = [])
     {
-        $this->lines[] = $message;
+        $this->lines['alerts'][] = $message;
     }
 
     public function critical($message, array $context = [])
     {
-        $this->lines[] = $message;
+        $this->lines['critical'][] = $message;
     }
 
     public function error($message, array $context = [])
     {
-        $this->lines[] = $message;
+        $this->lines['error'][] = $message;
     }
 
     public function warning($message, array $context = [])
     {
-        $this->lines[] = $message;
+        $this->lines['warning'][] = $message;
     }
 
     public function notice($message, array $context = [])
     {
-        $this->lines[] = $message;
+        $this->lines['notice'][] = $message;
     }
 
     public function info($message, array $context = [])
     {
-        $this->lines[] = $message;
+        $this->lines['info'][] = $message;
     }
 
     public function debug($message, array $context = [])
     {
-        $this->lines[] = $message;
+        $this->lines['debug'][] = $message;
     }
 
     public function log($level, $message, array $context = [])
     {
-        $this->lines[] = $message;
+        $this->lines[$level][] = $message;
     }
 
     public function getLinesAsString(): string
     {
-        return implode(PHP_EOL, $this->lines);
+        return print_r($this->lines, true);
     }
 }

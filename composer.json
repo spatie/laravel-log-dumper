@@ -21,6 +21,7 @@
         "spatie/phpunit-snapshot-assertions": "^4.0"
     },
     "require-dev": {
+        "ext-json": "*",
         "friendsofphp/php-cs-fixer": "^2.16",
         "orchestra/testbench": "^5.0",
         "phpunit/phpunit": "^9.0"
