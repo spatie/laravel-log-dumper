@@ -36,7 +36,7 @@ ld('a string', ['an array'], new Class());
 
 All arguments will be converted to strings and will be written to the application log using the `info` level.
 
-## Using other log level
+## Using other log levels
 
 If you want to use another log level, you can just call the method you want on `ld`. You can pass these methods any type of arugment and any number of arguments. They will all be logged.
 
