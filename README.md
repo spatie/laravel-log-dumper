@@ -57,12 +57,12 @@ ld()
    ->error('Error info', new Class);
 ```
 
-## Disable logging
+## Enabling and disabling logging
 
 You can disable logging by calling `disable`.
 
 ```php
-ld('foo') // will be logged
+ld('foo'); // will be logged
 
 ld()->disable();
 
@@ -70,7 +70,7 @@ ld('bar') // will not be logged
 
 ld()->enable();
 
-ld('baz') // will be logged
+ld('baz'); // will be logged
 ```
 
 You can pass a boolean to `enable`. This can be handy when you want to log only one iteration of a loop.
@@ -78,9 +78,9 @@ You can pass a boolean to `enable`. This can be handy when you want to log only 
 ```php
 foreach (range(1, 3) as $i) {
    // only things in the third iteration will be logged
-   ld()->enable($i === 3)
+   ld()->enable($i === 3);
     
-   ld('we are in the third iteration')
+   ld('we are in the third iteration');
 }
 ```
 
