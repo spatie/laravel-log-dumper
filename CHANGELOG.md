@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-log-dump` will be documented in this file
 
+## 1.2.0 - 2020-06-18
+
+- add `enable` and `disable`
+
 ## 1.1.0 - 2020-04-14
 
 - add support for different log levels

@@ -53,6 +53,11 @@ class LogFake implements LoggerInterface
         $this->lines[$level][] = $message;
     }
 
+    public function getLines(): array
+    {
+        return $this->lines;
+    }
+
     public function getLinesAsString(): string
     {
         return print_r($this->lines, true);

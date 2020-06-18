@@ -3,20 +3,12 @@
 namespace Spatie\LogDumper\Tests;
 
 use Illuminate\Support\Facades\Log;
-use Orchestra\Testbench\TestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 use stdClass;
 
 class LogDumperTest extends TestCase
 {
     use MatchesSnapshots;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Log::swap(new LogFake());
-    }
 
     /** @test */
     public function it_can_log_a_single_thing()
@@ -146,6 +138,36 @@ class LogDumperTest extends TestCase
         ld()->emergency('string');
 
         ld()->error(['a' => 1], 'another string')->emergency(['b' => 1], 'yet another string');
+
+        $this->assertMatchesSnapshot(Log::getLinesAsString());
+    }
+
+    /** @test */
+    public function it_can_disable_output()
+    {
+        ld()->disable();
+
+        ld()->info('ignored');
+        ld()->error('also ignored');
+
+        $this->assertCount(0, Log::getLines());
+
+        ld()->enable();
+
+        ld()->info('ignored');
+
+        $this->assertCount(1, Log::getLines());
+    }
+
+    /** @test */
+    public function enable_accepts_a_boolean()
+    {
+        foreach (range(1, 3) as $i) {
+            // only things in the third iteration will be logged
+            ld()->enable($i === 3);
+
+            ld('we are in the third iteration');
+        }
 
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }

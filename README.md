@@ -42,19 +42,46 @@ All arguments will be converted to strings and will be written to the applicatio
 
 ## Using other log levels
 
-If you want to use another log level, you can just call the method you want on `ld`. You can pass these methods any type of arugment and any number of arguments. They will all be logged.
+If you want to use another log level, you can just call the method you want on `ld`. You can pass these methods any type of argument and any number of arguments. They will all be logged.
 
 ```php
 // logs using the `error` level
 ld()->error('a string', ['an array'], new Class())
 ```
 
-Of course you can mix and chain different levels.
+Of course, you can mix and chain different levels.
 
 ```php
 ld()
    ->debug('Debug info', ['an array'])
    ->error('Error info', new Class);
+```
+
+## Disable logging
+
+You can disable logging by calling `disable`.
+
+```php
+ld('foo') // will be logged
+
+ld()->disable();
+
+ld('bar') // will not be logged
+
+ld()->enable();
+
+ld('baz') // will be logged
+```
+
+You can pass a boolean to `enable`. This can be handy when you want to log only one iteration of a loop.
+
+```php
+foreach (range(1, 3) as $i) {
+   // only things in the third iteration will be logged
+   ld()->enable($i === 3)
+    
+   ld('we are in the third iteration')
+}
 ```
 
 ## Testing

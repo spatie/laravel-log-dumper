@@ -7,9 +7,11 @@ use Symfony\Component\VarDumper\Dumper\CliDumper;
 
 class LogDumper
 {
-    private VarCloner $cloner;
+    protected VarCloner $cloner;
 
-    private CliDumper $dumper;
+    protected CliDumper $dumper;
+
+    protected bool $enabled = true;
 
     public function __construct()
     {
@@ -58,8 +60,26 @@ class LogDumper
         return $this->log('emergency', ...$arguments);
     }
 
+    public function enable(bool $enabled = true): self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function disable(): self
+    {
+        $this->enabled = false;
+
+        return $this;
+    }
+
     public function log(string $method, ...$arguments): self
     {
+        if (! $this->enabled) {
+            return $this;
+        }
+
         foreach ($arguments as $argument) {
             $logOutput = $this->convertToString($argument);
 
@@ -68,6 +88,8 @@ class LogDumper
 
         return $this;
     }
+
+
 
     protected function convertToString($argument): string
     {
