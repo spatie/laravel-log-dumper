@@ -66,7 +66,7 @@ ld('foo'); // will be logged
 
 ld()->disable();
 
-ld('bar') // will not be logged
+ld('bar'); // will not be logged
 
 ld()->enable();
 
@@ -102,7 +102,7 @@ Alternatively to manually starting and stopping listening for queries, you can a
 
 ````php
 ld()->logQueries(function() {
-    $this->mailAllUsers() // all queries executed in this closure will be logged
+    $this->mailAllUsers(); // all queries executed in this closure will be logged
 }); 
 
 User::get(); // this query will not be logged
