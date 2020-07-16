@@ -2,6 +2,8 @@
 
 namespace Spatie\LogDumper;
 
+use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;
 
@@ -12,6 +14,10 @@ class LogDumper
     protected CliDumper $dumper;
 
     protected bool $enabled = true;
+
+    protected $listenForQueries = false;
+
+    protected $queryListenerRegistered = false;
 
     public function __construct()
     {
@@ -74,6 +80,52 @@ class LogDumper
         return $this;
     }
 
+    public function logQueries($callable = null): self
+    {
+        $wasLoggingQueries = $this->listenForQueries;
+
+        $this->startLoggingQueries();
+
+        if (! is_null($callable)) {
+            $callable();
+
+            if (! $wasLoggingQueries) {
+                $this->stopLoggingQueryies();
+            }
+        }
+
+        return $this;
+    }
+
+    public function startLoggingQueries(): self
+    {
+        DB::enableQueryLog();
+
+        $this->listenForQueries = true;
+
+        if (! $this->queryListenerRegistered) {
+            DB::listen(function (QueryExecuted $query) {
+                if ($this->listenForQueries) {
+                    $this->info($query->sql);
+                }
+            });
+
+            $this->queryListenerRegistered = true;
+        }
+
+
+        return $this;
+    }
+
+    public function stopLoggingQueryies(): self
+    {
+        DB::disableQueryLog();
+
+        $this->listenForQueries = false;
+
+        return $this;
+    }
+
     public function log(string $method, ...$arguments): self
     {
         if (! $this->enabled) {
@@ -88,8 +140,6 @@ class LogDumper
 
         return $this;
     }
-
-
 
     protected function convertToString($argument): string
     {

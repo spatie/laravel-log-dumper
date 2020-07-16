@@ -84,6 +84,30 @@ foreach (range(1, 3) as $i) {
 }
 ```
 
+## Logging queries
+
+You can log all queries with `logQueries`.
+
+````php
+ld()->logQueries(); // all queries after this call will be logged
+````
+
+If you wish to stop logging queries, call `stopLoggingQueries`.
+
+````php
+ld()->stopLoggingQueryies(); // all queries after this call will not be logged anymore
+````
+
+Alternatively to manually starting and stopping listening for queries, you can also pass a closure to `logQueries`. Only the queries executed inside the closure will be logged.
+
+````php
+ld()->logQueries(function() {
+    $this->mailAllUsers() // all queries executed in this closure will be logged
+}); 
+
+User::get(); // this query will not be logged
+````
+
 ## Testing
 
 ``` bash

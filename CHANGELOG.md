@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-log-dump` will be documented in this file
 
+## 1.3.0 - 2020-06-17
+
+- add query logging
+
 ## 1.2.0 - 2020-06-18
 
 - add `enable` and `disable`

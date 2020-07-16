@@ -2,6 +2,7 @@
 
 namespace Spatie\LogDumper\Tests;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Spatie\Snapshots\MatchesSnapshots;
 use stdClass;
@@ -168,6 +169,55 @@ class LogDumperTest extends TestCase
 
             ld('we are in the third iteration');
         }
+
+        $this->assertMatchesSnapshot(Log::getLinesAsString());
+    }
+
+    /** @test */
+    public function it_can_start_logging_queries()
+    {
+        ld()->logQueries();
+
+        DB::table('users')->get('id');
+
+        $this->assertMatchesSnapshot(Log::getLinesAsString());
+    }
+
+    /** @test */
+    public function it_can_stop_logging_queries()
+    {
+        ld()->logQueries();
+
+        DB::table('users')->get('id');
+
+        ld()->stopLoggingQueryies();
+
+        DB::table('users')->get('id');
+
+        $this->assertMatchesSnapshot(Log::getLinesAsString());
+    }
+
+    /** @test */
+    public function calling_log_queries_twice_will_not_log_all_queries_twice()
+    {
+        ld()->logQueries();
+        ld()->logQueries();
+
+        DB::table('users')->get('id');
+
+        $this->assertMatchesSnapshot(Log::getLinesAsString());
+    }
+
+    /** @test */
+    public function it_can_log_all_queries_in_a_callable()
+    {
+        ld()->logQueries(function () {
+            // will be logged
+            DB::table('users')->where('id', 1)->get();
+        });
+
+        // will not be logged
+        DB::table('users')->get('id');
 
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }

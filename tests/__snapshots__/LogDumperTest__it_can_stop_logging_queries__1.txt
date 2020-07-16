@@ -1,0 +1,9 @@
+Array
+(
+    [info] => Array
+        (
+            [0] => "select "id" from "users""
+
+        )
+
+)
