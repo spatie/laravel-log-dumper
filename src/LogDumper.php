@@ -90,7 +90,7 @@ class LogDumper
             $callable();
 
             if (! $wasLoggingQueries) {
-                $this->stopLoggingQueryies();
+                $this->stopLoggingQueries();
             }
         }
 
@@ -117,7 +117,7 @@ class LogDumper
         return $this;
     }
 
-    public function stopLoggingQueryies(): self
+    public function stopLoggingQueries(): self
     {
         DB::disableQueryLog();
 

@@ -190,7 +190,7 @@ class LogDumperTest extends TestCase
 
         DB::table('users')->get('id');
 
-        ld()->stopLoggingQueryies();
+        ld()->stopLoggingQueries();
 
         DB::table('users')->get('id');
 

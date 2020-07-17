@@ -32,7 +32,7 @@ composer require spatie/laravel-log-dumper
 
 ## Usage
 
-You can pass any variable you want to `ld`. 
+You can pass any variable you want to `ld`.
 
 ```php
 ld('a string', ['an array'], new Class());
@@ -79,7 +79,7 @@ You can pass a boolean to `enable`. This can be handy when you want to log only 
 foreach (range(1, 3) as $i) {
    // only things in the third iteration will be logged
    ld()->enable($i === 3);
-    
+
    ld('we are in the third iteration');
 }
 ```
@@ -95,7 +95,7 @@ ld()->logQueries(); // all queries after this call will be logged
 If you wish to stop logging queries, call `stopLoggingQueries`.
 
 ````php
-ld()->stopLoggingQueryies(); // all queries after this call will not be logged anymore
+ld()->stopLoggingQueries(); // all queries after this call will not be logged anymore
 ````
 
 Alternatively to manually starting and stopping listening for queries, you can also pass a closure to `logQueries`. Only the queries executed inside the closure will be logged.
@@ -103,7 +103,7 @@ Alternatively to manually starting and stopping listening for queries, you can a
 ````php
 ld()->logQueries(function() {
     $this->mailAllUsers(); // all queries executed in this closure will be logged
-}); 
+});
 
 User::get(); // this query will not be logged
 ````
