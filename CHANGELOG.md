@@ -2,7 +2,11 @@
 
 All notable changes to `laravel-log-dump` will be documented in this file
 
-## 1.3.0 - 2020-06-17
+## 1.3.1 - 2020-07-17
+
+- fix spelling of `stopLoggingQueries` (#5)
+
+## 1.3.0 - 2020-07-17
 
 - add query logging
 
