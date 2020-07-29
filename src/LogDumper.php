@@ -4,6 +4,7 @@ namespace Spatie\LogDumper;
 
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;
 
@@ -13,17 +14,26 @@ class LogDumper
 
     protected CliDumper $dumper;
 
+    protected LogServer $logServer;
+
     protected bool $enabled = true;
+
+    public string $color = '';
+
+    public string $textStyle = '';
 
     protected $listenForQueries = false;
 
     protected $queryListenerRegistered = false;
+
 
     public function __construct()
     {
         $this->cloner = new VarCloner();
 
         $this->dumper = new CliDumper();
+
+        $this->logServer = new LogServer();
     }
 
     public function debug(...$arguments): self
@@ -126,6 +136,34 @@ class LogDumper
         return $this;
     }
 
+    public function color(string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function clear(): self
+    {
+        $this->logServer->clearScreen();
+
+        return $this;
+    }
+
+    public function separator(): self
+    {
+        //TODO: implement
+
+        return $this;
+    }
+
+    public function large(): self
+    {
+        $this->textStyle = '3xl';
+
+        return $this;
+    }
+
     public function log(string $method, ...$arguments): self
     {
         if (! $this->enabled) {
@@ -133,9 +171,24 @@ class LogDumper
         }
 
         foreach ($arguments as $argument) {
+
             $logOutput = $this->convertToString($argument);
 
             app('log')->$method($logOutput);
+
+            $style = ['color' => $this->color];
+
+            if ($method === 'error') {
+                $style = ['color' => 'red'];
+            }
+
+            if ($method === 'warn') {
+                $style = ['color' => 'yellow'];
+            }
+
+            $style['text'] = $this->textStyle;
+
+            $this->logServer->log($logOutput, $style);
         }
 
         return $this;
