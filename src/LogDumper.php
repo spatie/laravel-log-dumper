@@ -4,7 +4,6 @@ namespace Spatie\LogDumper;
 
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;
 
@@ -171,7 +170,6 @@ class LogDumper
         }
 
         foreach ($arguments as $argument) {
-
             $logOutput = $this->convertToString($argument);
 
             app('log')->$method($logOutput);
