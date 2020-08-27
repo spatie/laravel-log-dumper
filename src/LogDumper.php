@@ -4,7 +4,7 @@ namespace Spatie\LogDumper;
 
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;
 
@@ -171,10 +171,9 @@ class LogDumper
         }
 
         foreach ($arguments as $argument) {
-
             $logOutput = $this->convertToString($argument);
 
-            app('log')->$method($logOutput);
+            app('log')->$method($logOutput, ['sentToLogServer' => 1]);
 
             $style = ['color' => $this->color];
 
@@ -198,6 +197,10 @@ class LogDumper
     {
         $clonedArgument = $this->cloner->cloneVar($argument);
 
-        return $this->dumper->dump($clonedArgument, true);
+        $string = $this->dumper->dump($clonedArgument, true);
+
+        $string = rtrim($string, PHP_EOL);
+
+        return trim($string, '"');
     }
 }

@@ -3,10 +3,11 @@
 namespace Spatie\LogDumper;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class LogServer
 {
-    protected $endpoint = 'http://log-listener.test/api/log';
+    protected $endpoint = 'http://localhost:3000';
 
     public function clearScreen(): self
     {
@@ -29,17 +30,41 @@ class LogServer
     protected function call(array $payload)
     {
         $frameInfo = [
+            'timestamp' => now()->timestamp,
             'file' => $this->getFrame()['file'] ?? null,
             'line_number' => $this->getFrame()['line'] ?? null,
         ];
 
         $payload = array_merge($frameInfo, $payload);
 
-        Http::withoutVerifying()->post($this->endpoint, $payload);
+        Http::post($this->endpoint, $payload);
     }
 
     protected function getFrame(): ?array
     {
-        return debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 6)[5] ?? null;
+        $trace = array_reverse(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
+
+        $ldIndex = $this->getIndexOfLdCall($trace);
+
+        if (! $ldIndex) {
+            return null;
+        }
+
+
+        $frameIndex = $ldIndex - 1;
+
+        return $trace[$frameIndex] ?? null;
+    }
+
+    protected function getIndexOfLdCall(array $stackTrace): ?int
+    {
+
+        foreach($stackTrace as $index => $frame) {
+            if ((Str::startsWith($frame['file'], __DIR__))) {
+                return $index;
+            }
+        }
+
+        return null;
     }
 }

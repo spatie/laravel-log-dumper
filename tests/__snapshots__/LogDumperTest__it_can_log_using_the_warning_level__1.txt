@@ -2,14 +2,11 @@ Array
 (
     [warning] => Array
         (
-            [0] => "string"
-
+            [0] => string
             [1] => array:1 [
   "a" => 1
 ]
-
-            [2] => "another string"
-
+            [2] => another string
         )
 
 )

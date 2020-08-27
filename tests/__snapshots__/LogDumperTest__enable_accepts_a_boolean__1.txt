@@ -2,8 +2,7 @@ Array
 (
     [info] => Array
         (
-            [0] => "we are in the third iteration"
-
+            [0] => we are in the third iteration
         )
 
 )

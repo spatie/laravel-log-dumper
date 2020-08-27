@@ -2,10 +2,8 @@ Array
 (
     [info] => Array
         (
-            [0] => "test"
-
-            [1] => "test2"
-
+            [0] => test
+            [1] => test2
         )
 
 )

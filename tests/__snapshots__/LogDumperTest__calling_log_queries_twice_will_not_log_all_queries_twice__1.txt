@@ -2,8 +2,7 @@ Array
 (
     [info] => Array
         (
-            [0] => "select "id" from "users""
-
+            [0] => select "id" from "users
         )
 
 )

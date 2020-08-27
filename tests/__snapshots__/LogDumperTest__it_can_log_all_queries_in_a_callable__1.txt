@@ -2,8 +2,7 @@ Array
 (
     [info] => Array
         (
-            [0] => "select * from "users" where "id" = ?"
-
+            [0] => select * from "users" where "id" = ?
         )
 
 )
