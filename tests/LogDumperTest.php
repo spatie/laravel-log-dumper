@@ -2,14 +2,9 @@
 
 namespace Spatie\LogDumper\Tests;
 
-use Illuminate\Http\Client\Request;
-use Illuminate\Log\Events\MessageLogged;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Spatie\LogDumper\Timber;
 use Spatie\Snapshots\MatchesSnapshots;
 use stdClass;
 

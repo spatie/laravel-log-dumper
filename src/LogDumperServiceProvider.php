@@ -25,7 +25,6 @@ class LogDumperServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/log-dumper.php', 'log-dumper');
 
         Event::listen(MessageLogged::class, function (MessageLogged $message) {
-
             if (! config('log-dumper.timber.send_regular_log_calls')) {
                 return;
             }
