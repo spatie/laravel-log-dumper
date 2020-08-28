@@ -2,13 +2,12 @@
 
 namespace Spatie\LogDumper;
 
+use Illuminate\Log\LogManager;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
-class LogServer
+class Timber
 {
-    protected $endpoint = 'http://localhost:3000';
-
     public function clearScreen(): self
     {
         $this->call(['type' => 'clear_screen']);
@@ -37,7 +36,7 @@ class LogServer
 
         $payload = array_merge($frameInfo, $payload);
 
-        Http::post($this->endpoint, $payload);
+        Http::post('http://localhost:' . config('log-dumper.timber.port'), $payload);
     }
 
     protected function getFrame(): ?array
@@ -58,9 +57,12 @@ class LogServer
 
     protected function getIndexOfLdCall(array $stackTrace): ?int
     {
+        foreach ($stackTrace as $index => $frame) {
+            if (($frame['class'] ?? '') === LogManager::class) {
+                return $index;
+            }
 
-        foreach($stackTrace as $index => $frame) {
-            if ((Str::startsWith($frame['file'], __DIR__))) {
+            if ((Str::startsWith($frame['file'] ?? '', __DIR__))) {
                 return $index;
             }
         }

@@ -14,7 +14,7 @@ class LogDumper
 
     protected CliDumper $dumper;
 
-    protected LogServer $logServer;
+    protected Timber $logServer;
 
     protected bool $enabled = true;
 
@@ -22,10 +22,9 @@ class LogDumper
 
     public string $textStyle = '';
 
-    protected $listenForQueries = false;
+    protected bool $listenForQueries = false;
 
-    protected $queryListenerRegistered = false;
-
+    protected bool $queryListenerRegistered = false;
 
     public function __construct()
     {
@@ -33,7 +32,7 @@ class LogDumper
 
         $this->dumper = new CliDumper();
 
-        $this->logServer = new LogServer();
+        $this->logServer = new Timber();
     }
 
     public function debug(...$arguments): self
@@ -100,7 +99,7 @@ class LogDumper
             $callable();
 
             if (! $wasLoggingQueries) {
-                $this->stopLoggingQueryies();
+                $this->stopLoggingQueries();
             }
         }
 
@@ -127,7 +126,7 @@ class LogDumper
         return $this;
     }
 
-    public function stopLoggingQueryies(): self
+    public function stopLoggingQueries(): self
     {
         DB::disableQueryLog();
 
@@ -173,22 +172,15 @@ class LogDumper
         foreach ($arguments as $argument) {
             $logOutput = $this->convertToString($argument);
 
-            app('log')->$method($logOutput, ['sentToLogServer' => 1]);
+            app('log')->$method($logOutput, ['sentToTimber' => 1]);
 
-            $style = ['color' => $this->color];
-
-            if ($method === 'error') {
-                $style = ['color' => 'red'];
+            if (config('log-dumper.timber.send_ld_calls')) {
+                $this->sentToTimber($method, $logOutput);
             }
-
-            if ($method === 'warn') {
-                $style = ['color' => 'yellow'];
-            }
-
-            $style['text'] = $this->textStyle;
-
-            $this->logServer->log($logOutput, $style);
         }
+
+        $this->color = '';
+        $this->textStyle = '';
 
         return $this;
     }
@@ -202,5 +194,22 @@ class LogDumper
         $string = rtrim($string, PHP_EOL);
 
         return trim($string, '"');
+    }
+
+    protected function sentToTimber(string $method, string $logOutput): void
+    {
+        $style = ['color' => $this->color];
+
+        if ($method === 'error') {
+            $style = ['color' => 'red'];
+        }
+
+        if ($method === 'warn') {
+            $style = ['color' => 'yellow'];
+        }
+
+        $style['text'] = $this->textStyle;
+
+        $this->logServer->log($logOutput, $style);
     }
 }

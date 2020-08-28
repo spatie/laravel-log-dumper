@@ -3,9 +3,13 @@
 namespace Spatie\LogDumper\Tests;
 
 use Illuminate\Http\Client\Request;
+use Illuminate\Log\Events\MessageLogged;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Spatie\LogDumper\Timber;
 use Spatie\Snapshots\MatchesSnapshots;
 use stdClass;
 
@@ -18,6 +22,8 @@ class LogDumperTest extends TestCase
         parent::setUp();
 
         Http::fake();
+
+        Log::swap(new LogFake());
     }
 
     /** @test */
@@ -199,7 +205,7 @@ class LogDumperTest extends TestCase
 
         DB::table('users')->get('id');
 
-        ld()->stopLoggingQueryies();
+        ld()->stopLoggingQueries();
 
         DB::table('users')->get('id');
 
@@ -229,35 +235,5 @@ class LogDumperTest extends TestCase
         DB::table('users')->get('id');
 
         $this->assertMatchesSnapshot(Log::getLinesAsString());
-    }
-
-    /** @test */
-    public function ld_can_determine_its_location()
-    {
-        Http::fake(function (Request $request) {
-            $data = $request->data();
-            $this->assertEquals(__FILE__, $data['file']);
-
-            $this->requestMade = true;
-        });
-
-        ld('here');
-
-        $this->assertTrue($this->requestMade);
-    }
-
-    /** @test */
-    public function it_can_determine_the_log_location_even_when_chaining_functions()
-    {
-        Http::fake(function (Request $request) {
-            $data = $request->data();
-            $this->assertEquals(__FILE__, $data['file']);
-
-            $this->requestMade = true;
-        });
-
-        ld()->color('green')->info('info');
-
-        $this->assertTrue($this->requestMade);
     }
 }
