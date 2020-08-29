@@ -3,15 +3,8 @@
 namespace Spatie\LogDumper\Tests;
 
 use Illuminate\Http\Client\Request;
-use Illuminate\Log\Events\MessageLogged;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Spatie\LogDumper\Timber;
-use Spatie\Snapshots\MatchesSnapshots;
-use stdClass;
 
 class TimberTest extends TestCase
 {
@@ -78,7 +71,7 @@ class TimberTest extends TestCase
     /** @test */
     public function it_will_not_send_ld_calls_when_disabled()
     {
-        config()->set(['log-dumper.timber.send_ld_calls' =>  false]);
+        config()->set(['log-dumper.timber.send_ld_calls' => false]);
 
         Http::fake(function (Request $request) {
             $data = $request->data();

@@ -2,6 +2,7 @@
 
 namespace Spatie\LogDumper;
 
+use Exception;
 use Illuminate\Log\LogManager;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -14,9 +15,23 @@ class Timber
 
         return $this;
     }
-
-    public function log($content, array $style)
+    
+    public function json($value)
     {
+        $this->call([
+            'type' => 'json',
+            'content' => json_encode($value),
+        ]);
+    }
+
+    public function log($content, array $style = [])
+    {
+        $content = htmlentities($content);
+
+        $content = str_replace(' ', '&nbsp', $content);
+
+        $content = nl2br($content);
+
         $payload = compact('content', 'style');
 
         $payload['type'] = 'log';
@@ -36,7 +51,10 @@ class Timber
 
         $payload = array_merge($frameInfo, $payload);
 
-        Http::post('http://localhost:' . config('log-dumper.timber.port'), $payload);
+        try {
+            Http::post('http://localhost:' . config('log-dumper.timber.port'), $payload);
+        } catch (Exception $exception) {
+        }
     }
 
     protected function getFrame(): ?array

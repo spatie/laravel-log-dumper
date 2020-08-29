@@ -148,11 +148,9 @@ class LogDumper
         return $this;
     }
 
-    public function separator(): self
+    public function table($arrayable)
     {
-        //TODO: implement
-
-        return $this;
+        $this->logServer->json($arrayable);
     }
 
     public function large(): self
@@ -174,7 +172,7 @@ class LogDumper
             app('log')->$method($logOutput, ['sentToTimber' => 1]);
 
             if (config('log-dumper.timber.send_ld_calls')) {
-                $this->sentToTimber($method, $logOutput);
+                $this->sendToTimber($method, $logOutput);
             }
         }
 
@@ -195,7 +193,7 @@ class LogDumper
         return trim($string, '"');
     }
 
-    protected function sentToTimber(string $method, string $logOutput): void
+    protected function sendToTimber(string $method, string $logOutput): void
     {
         $style = ['color' => $this->color];
 
