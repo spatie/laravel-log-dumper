@@ -16,7 +16,7 @@ return [
         /*
          * The port number to communicate with Timber
          */
-        'port' => 3000,
+        'port' => 23517,
     ],
 
 ];
