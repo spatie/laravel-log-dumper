@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-log-dump` will be documented in this file
 
+## 1.3.2 - 2020-09-09
+
+- Support Laravel 8
+
 ## 1.3.1 - 2020-07-17
 
 - fix spelling of `stopLoggingQueries` (#5)
