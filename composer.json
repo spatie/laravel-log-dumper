@@ -1,6 +1,6 @@
 {
     "name": "spatie/laravel-log-dumper",
-    "description": "A function to dump anything to the log\n",
+    "description": "A function to dump anything to the log",
     "keywords": [
         "spatie",
         "laravel-log-dumper"
@@ -17,13 +17,13 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "illuminate/database": "^7.20|^8.0",
-        "illuminate/support": "^7.0|^8.0"
+        "illuminate/database": "^8.72",
+        "illuminate/support": "^8.72"
     },
     "require-dev": {
         "ext-json": "*",
-        "orchestra/testbench": "^5.0|^6.0",
-        "phpunit/phpunit": "^9.0",
+        "orchestra/testbench": "^6.23",
+        "phpunit/phpunit": "^9.4",
         "spatie/phpunit-snapshot-assertions": "^4.0"
     },
     "autoload": {
