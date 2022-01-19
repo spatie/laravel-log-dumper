@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-log-dump` will be documented in this file
 
+## 1.4.1 - 2022-01-19
+
+- support Laravel 9
+
 ## 1.4.0 - 2020-11-26
 
 - Support PHP 8.0
