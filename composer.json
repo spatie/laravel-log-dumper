@@ -17,12 +17,12 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "illuminate/database": "^8.72|^9.0",
-        "illuminate/support": "^8.72|^9.0"
+        "illuminate/database": "^8.72|^9.0|^10.0",
+        "illuminate/support": "^8.72|^9.0|^10.0"
     },
     "require-dev": {
         "ext-json": "*",
-        "orchestra/testbench": "^6.23|^7.0",
+        "orchestra/testbench": "^6.23|^7.0|^8.0",
         "phpunit/phpunit": "^9.4",
         "spatie/phpunit-snapshot-assertions": "^4.0"
     },
