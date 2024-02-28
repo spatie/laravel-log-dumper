@@ -1,7 +1,7 @@
 # A function to dump anything to the log
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-log-dumper.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-log-dumper)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-log-dumper/run-tests?label=tests)](https://github.com/spatie/laravel-log-dumper/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![run-tests](https://github.com/spatie/laravel-log-dumper/actions/workflows/run-tests.yml/badge.svg)](https://github.com/spatie/laravel-log-dumper/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-log-dumper.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-log-dumper)
 
 This package contains a function `ld`. Any argument you pass to it will be dumped to the log. You can pass any kind of value to it.
