@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-log-dump` will be documented in this file
 
+## Support Laravel 11 - 2024-04-02
+
+### What's Changed
+
+* Laravel 11.x Compatibility https://github.com/spatie/laravel-log-dumper/pull/8
+
+**Full Changelog**: https://github.com/spatie/laravel-log-dumper/compare/1.4.2...1.5.0
+
 ## 1.4.2 - 2023-02-15
 
 - support Laravel 10
