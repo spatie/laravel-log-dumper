@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-log-dump` will be documented in this file
 
+## 1.6.0 - 2025-02-17
+
+### What's Changed
+
+* Laravel 12.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-log-dumper/pull/9
+
+**Full Changelog**: https://github.com/spatie/laravel-log-dumper/compare/1.5.0...1.6.0
+
 ## Support Laravel 11 - 2024-04-02
 
 ### What's Changed
