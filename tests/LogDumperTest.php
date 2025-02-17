@@ -4,6 +4,7 @@ namespace Spatie\LogDumper\Tests;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use PHPUnit\Framework\Attributes\Test;
 use Spatie\Snapshots\MatchesSnapshots;
 use stdClass;
 
@@ -11,7 +12,7 @@ class LogDumperTest extends TestCase
 {
     use MatchesSnapshots;
 
-    /** @test */
+    #[Test]
     public function it_can_log_a_single_thing()
     {
         ld('test');
@@ -19,7 +20,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_multiple_things()
     {
         ld('test', 'test2');
@@ -27,7 +28,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_an_array()
     {
         ld(['a' => 1, 'b' => 2]);
@@ -35,7 +36,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_an_object()
     {
         ld(new StdClass());
@@ -43,7 +44,7 @@ class LogDumperTest extends TestCase
         $this->assertTrue(true);
     }
 
-    /** @test */
+    #[Test]
     public function it_will_not_blow_up_when_passing_no_exceptions()
     {
         ld();
@@ -51,7 +52,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_debug_level_stuff()
     {
         ld()->debug('string');
@@ -61,7 +62,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_using_the_notice_level()
     {
         ld()->notice('string');
@@ -71,7 +72,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_using_the_info_level()
     {
         ld()->info('string');
@@ -81,7 +82,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_using_the_alert_level()
     {
         ld()->alert('string');
@@ -91,7 +92,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_using_the_warning_level()
     {
         ld()->warning('string');
@@ -101,7 +102,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_using_the_error_level()
     {
         ld()->error('string');
@@ -111,7 +112,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_using_the_critical_level()
     {
         ld()->critical('string');
@@ -122,7 +123,7 @@ class LogDumperTest extends TestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function it_can_log_using_the_emergency_level()
     {
         ld()->emergency('string');
@@ -133,7 +134,7 @@ class LogDumperTest extends TestCase
     }
 
 
-    /** @test */
+    #[Test]
     public function it_can_mix_levels()
     {
         ld()->emergency('string');
@@ -143,7 +144,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_disable_output()
     {
         ld()->disable();
@@ -160,7 +161,7 @@ class LogDumperTest extends TestCase
         $this->assertCount(1, Log::getLines());
     }
 
-    /** @test */
+    #[Test]
     public function enable_accepts_a_boolean()
     {
         foreach (range(1, 3) as $i) {
@@ -173,7 +174,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_start_logging_queries()
     {
         ld()->logQueries();
@@ -183,7 +184,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_stop_logging_queries()
     {
         ld()->logQueries();
@@ -197,7 +198,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function calling_log_queries_twice_will_not_log_all_queries_twice()
     {
         ld()->logQueries();
@@ -208,7 +209,7 @@ class LogDumperTest extends TestCase
         $this->assertMatchesSnapshot(Log::getLinesAsString());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_log_all_queries_in_a_callable()
     {
         ld()->logQueries(function () {
