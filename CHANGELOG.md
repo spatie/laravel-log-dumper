@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-log-dump` will be documented in this file
 
+## 1.7.0 - 2026-02-22
+
+Add Laravel 13.x support
+
 ## 1.6.0 - 2025-02-17
 
 ### What's Changed
